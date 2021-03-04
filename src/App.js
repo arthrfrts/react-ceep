@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { Component } from 'react';
+import AddForm from './components/AddForm';
+import NotesList from './components/NotesList';
 
-function App() {
-  return (
-    <h1>Hello world</h1>
-  );
+class App extends Component {
+  render() {
+    return (
+      <main>
+        <AddForm />
+        <NotesList />
+      </main>
+    );
+  }
 }
 
 export default App;
