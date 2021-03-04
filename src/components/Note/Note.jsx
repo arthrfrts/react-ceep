@@ -6,9 +6,9 @@ import './style.css';
     return (
       <section className="card">
         <header className="card_header">
-          <h3 className="card_title">Título</h3>
+          <h3 className="card_title">{this.props.title}</h3>
         </header>
-        <p className="card_content">Escreva sua nota</p>
+        <p className="card_content">{this.props.content}</p>
       </section>
     );
   }
