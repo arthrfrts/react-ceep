@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import AddForm from './components/AddForm';
 import NotesList from './components/NotesList';
 import './assets/App.css';
-import FiltersList from './components/FiltersList';
+import TagsList from './components/TagsList';
 
 class App extends Component {
   constructor() {
@@ -10,12 +10,12 @@ class App extends Component {
 
     this.state = {
       notes: [],
-      filters: [],
+      tags: [],
     };
   }
 
-  createNote(title, content) {
-    const newNote = {title, content};
+  createNote(title, content, tag) {
+    const newNote = {title, content, tag};
     const newNotesList = [...this.state.notes, newNote];
     const newState = {
       notes: newNotesList
@@ -26,16 +26,15 @@ class App extends Component {
 
   removeNote(index) {
     let notesList = this.state.notes;
-
+    
     notesList.splice(index, 1);
 
     this.setState({notes: notesList});
   }
 
-  createFilter(filterName) {
-    const newFiltersList = [...this.state.filters, filterName];
-
-    const newState = {...this.state, filters: newFiltersList};
+  createTag(tagName) {
+    const newTagsList = [...this.state.tags, tagName];
+    const newState = {...this.state, tags: newTagsList};
 
     this.setState(newState);
   }
@@ -43,8 +42,12 @@ class App extends Component {
   render() {
     return (
       <main>
-        <AddForm filters={this.state.filters} createNote={this.createNote.bind(this)} />
-        <FiltersList createFilter={this.createFilter.bind(this)} filters={this.state.filters} />
+        <AddForm
+          tags={this.state.tags}
+          createNote={this.createNote.bind(this)} />
+        <TagsList
+          createTag={this.createTag.bind(this)}
+          tags={this.state.tags} />
         <NotesList
           removeNote={this.removeNote.bind(this)}
           notes={this.state.notes} />

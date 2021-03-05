@@ -8,29 +8,36 @@ class AddForm extends Component {
 
     this.title = '';
     this.content = '';
+    this.tag = 'Sem categoria';
   }
 
   _handleTitleChange(e) {
     this.title = e.target.value;
   }
 
-  _handleTextChange(e) {
+  _handleContentChange(e) {
     this.content = e.target.value;
+  }
+
+  _handleTagChange(e) {
+    e.stopPropagation();
+    this.tag = e.target.value;
   }
 
   _createNote(e) {
     e.preventDefault();
     e.stopPropagation();
-    this.props.createNote(this.title, this.content);
+    this.props.createNote(this.title, this.content, this.tag);
   }s
   
   render() {
     return (
       <form className="add-note-form"
         onSubmit={this._createNote.bind(this)}>
-        <select>
-          {this.props.filters.map((filter) => {
-            return <option>{filter}</option>
+        <select onChange={this._handleTagChange.bind(this)}>
+          <option>Sem categoria</option>
+          {this.props.tags.map((tag) => {
+            return <option>{tag}</option>
           })}
         </select>
         <input
@@ -39,7 +46,7 @@ class AddForm extends Component {
           onChange={this._handleTitleChange.bind(this)} />
         <textarea 
           placeholder="Escreva sua nota"
-          onChange={this._handleTextChange.bind(this)} />
+          onChange={this._handleContentChange.bind(this)} />
         <button type="submit">Criar nota</button>
       </form>
     );

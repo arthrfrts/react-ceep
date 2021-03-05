@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import './style.css';
 
-class FiltersList extends Component {
+class TagsList extends Component {
 
   _handleInputEvent(e) {
-    const filterName = e.target.value;
+    const tagName = e.target.value;
     
     if (e.keyCode === 13) {
-      this.props.createFilter(filterName);
+      this.props.createTag(tagName);
     }
   }
 
@@ -15,8 +15,8 @@ class FiltersList extends Component {
     return (
       <nav>
         <ul>
-          {this.props.filters.map((filter, index) => {
-            return <li key={index}>{filter}</li>
+          {this.props.tags.map((tag, index) => {
+            return <li key={index}>{tag}</li>
           })}
         </ul>
 
@@ -26,4 +26,4 @@ class FiltersList extends Component {
   }
 }
 
-export default FiltersList
+export default TagsList
