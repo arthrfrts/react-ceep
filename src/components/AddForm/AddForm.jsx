@@ -36,8 +36,8 @@ class AddForm extends Component {
         onSubmit={this._createNote.bind(this)}>
         <select onChange={this._handleTagChange.bind(this)}>
           <option>Sem categoria</option>
-          {this.props.tags.map((tag) => {
-            return <option>{tag}</option>
+          {this.props.tags.map((tag, index) => {
+            return <option key={index}>{tag}</option>
           })}
         </select>
         <input

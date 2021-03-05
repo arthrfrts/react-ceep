@@ -3,54 +3,29 @@ import AddForm from './components/AddForm';
 import NotesList from './components/NotesList';
 import './assets/App.css';
 import TagsList from './components/TagsList';
+import Tag from './data/Tag';
+import Notes from './data/Notes';
 
 class App extends Component {
   constructor() {
     super();
 
-    this.state = {
-      notes: [],
-      tags: [],
-    };
-  }
-
-  createNote(title, content, tag) {
-    const newNote = {title, content, tag};
-    const newNotesList = [...this.state.notes, newNote];
-    const newState = {
-      notes: newNotesList
-    }
-
-    this.setState(newState);
-  }
-
-  removeNote(index) {
-    let notesList = this.state.notes;
-    
-    notesList.splice(index, 1);
-
-    this.setState({notes: notesList});
-  }
-
-  createTag(tagName) {
-    const newTagsList = [...this.state.tags, tagName];
-    const newState = {...this.state, tags: newTagsList};
-
-    this.setState(newState);
+    this.tags = new Tag();
+    this.notes = new Notes();
   }
 
   render() {
     return (
       <main>
         <AddForm
-          tags={this.state.tags}
-          createNote={this.createNote.bind(this)} />
+          tags={this.tags.items}
+          createNote={this.notes.addNote} />
         <TagsList
-          createTag={this.createTag.bind(this)}
-          tags={this.state.tags} />
+          createTag={this.tags.add}
+          tags={this.tags.items} />
         <NotesList
-          removeNote={this.removeNote.bind(this)}
-          notes={this.state.notes} />
+          removeNote={this.notes.removeNote}
+          notes={this.notes.items} />
       </main>
     );
   }

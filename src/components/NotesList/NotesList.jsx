@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Note from '../Note';
+import NoteCard from '../NoteCard';
 import "./style.css";
 
 class NotesList extends Component {
@@ -9,7 +9,7 @@ class NotesList extends Component {
         {this.props.notes.map((note, index) => {
           return (
             <li className="note" key={index}>
-              <Note
+              <NoteCard
                 title={note.title}
                 content={note.content}
                 tag={note.tag}
