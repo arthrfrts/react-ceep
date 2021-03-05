@@ -18,14 +18,17 @@ class App extends Component {
     return (
       <main>
         <AddForm
-          tags={this.tags.items}
-          createNote={this.notes.addNote} />
+          tags={this.tags}
+          addNote={this.notes.addNote.bind(this.notes)}
+        />
         <TagsList
-          createTag={this.tags.add}
-          tags={this.tags.items} />
+          createTag={this.tags.add.bind(this.tags)}
+          tags={this.tags}
+        />
         <NotesList
-          removeNote={this.notes.removeNote}
-          notes={this.notes.items} />
+          removeNote={this.notes.removeNote.bind(this.notes)}
+          notes={this.notes}
+        />
       </main>
     );
   }
