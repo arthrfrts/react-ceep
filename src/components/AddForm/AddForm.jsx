@@ -28,6 +28,11 @@ class AddForm extends Component {
     return (
       <form className="add-note-form"
         onSubmit={this._createNote.bind(this)}>
+        <select>
+          {this.props.filters.map((filter) => {
+            return <option>{filter}</option>
+          })}
+        </select>
         <input
           type="text" 
           placeholder="Título"
